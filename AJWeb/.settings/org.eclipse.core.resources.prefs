@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//WebContent/app/student/update.jsp=UTF-8
+encoding//WebContent/web/helloJsp.jsp=UTF-8
+encoding//WebContent/web/session/loginForm.jsp=UTF-8
+encoding//src/org/ddd/app/student/factory/DaoFactory.java=UTF-8
+encoding//src/org/ddd/app/thread/vendor/Vendor.java=UTF-8
+encoding//src/org/ddd/db/DatabaseMetaDataTest.java=GBK
+encoding//src/org/ddd/net/basic/AIO/AioServer.java=gb2312
+encoding//src/org/ddd/thread/example4/SleepingThreadTester.java=gb2312
+encoding/<project>=UTF-8

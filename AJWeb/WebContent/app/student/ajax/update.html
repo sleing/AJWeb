@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function getXMLHttp()
+{
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+		//  IE7+, Firefox, Chrome, Opera, Safari ä¯ÀÀÆ÷Ö´ÐÐ´úÂë
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		// IE6, IE5 ä¯ÀÀÆ÷Ö´ÐÐ´úÂë
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	return xmlhttp;
+}
+
+function loadData(id)
+{
+	//debugger
+	xmlhttp = getXMLHttp();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			
+			var studentJson = xmlhttp.responseText;
+			alert(studentJson)
+			var student = JSON.parse(studentJson);
+			document.getElementById("id").value = student.id;
+			document.getElementById("name").value = student.name;
+			document.getElementById("age").value = student.age;
+		}
+	}
+	xmlhttp.open("GET", "/AJWeb/StudentGetter?id="+id, true);
+	xmlhttp.send();
+}	
+function saveEvent()
+{
+	var student ={};
+	student.id = document.getElementById("id").value;
+	student.name = document.getElementById("name").value ;
+	student.age = document.getElementById("age").value ;
+	var studentJson = JSON.stringify(student);
+	
+	xmlhttp = getXMLHttp();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			 alert( xmlhttp.responseText);
+		}
+	}
+	
+	xmlhttp.open("GET", "/AJWeb/StudentSetter?student="+studentJson, true);
+	xmlhttp.send();
+}
+function clickEvent()
+{
+	var id = prompt("please input Id",1);
+	loadData(id);
+}
+</script>
+<body onload="loadData(1)">
+	<form>
+		<table>
+			<tr>
+				<td>id</td>
+				<td><input type="text" id="id" name="id" readonly="readonly" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td><input type="text" id="name" name="name" value="" /></td>
+			</tr>
+			<tr>
+				<td>age</td>
+				<td><input type="number" id="age" name="age" value="" /></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="save" onclick="saveEvent()" /></td>
+				<td><input type="button" value="load" onclick="clickEvent()" /></td>
+			</tr>
+		</table>
+
+	</form>
+</body>
+</html>

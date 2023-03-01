@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <title>新增学生</title>
+</head>
+<body>
+<form action="./StudentSave" method="get">
+<table>
+    <tr><td><h4>新增学生</h4></td></tr>
+    <tr><td>姓名</td><td><input type="text" name="name"/></td></tr>        
+    <tr><td>年龄</td><td><input type="number" name="age"/></td></tr>
+    <tr><td>性别</td>
+    	<td>
+    	<input type="radio" name="gender" value="男">男 </input>
+    	<input type="radio" name="gender" value="女">女 </input>
+    	<input type="radio"name="gender" value="其他">其他</input>
+        </td>
+    </tr>
+    <tr><td>学院</td>
+        <td><select name="school">
+            <option value="计算机学院">计算机学院</option>
+            <option value="数学学院">数学学院</option>
+            <option value="机械学院" selected>机械学院</option>
+        </select></td>
+    </tr>
+    <tr><td>爱好</td><td>
+    	<input type="checkbox" name="hobby_basketball" checked="checked"> 篮球 </input> 
+        <input type="checkbox" name="hobby_badminton"> 羽毛球 </input>
+        <input type="checkbox" name="hobby_pingpong" > 兵乓球 </input>
+        </td>
+    </tr>
+
+    <tr><td>简历</td><td><textarea rows="5" cols="30" name="resume"></textarea></td></tr>
+
+    <tr><td><input type="submit" value="保存"/></td></tr>
+</table>
+</form>
+</body>
+</html>

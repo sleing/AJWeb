@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <title>新增学生</title>
+<script type="text/javascript">
+function validate()
+{
+debugger
+let student ={}
+student.name = document.getElementById("name").value;
+student.age = document.getElementById("age").value;
+student.age = document.getElementById("age").value;
+var genders = document.getElementsByName("gender");
+for (let i=0; i<genders.length; i++) {
+	if (genders[i].checked) {
+		student.gender = genders[i].value;
+		break;
+	}
+}
+student.school = document.getElementById("school").value;
+student.hobbies=[];
+var hobbies=document.getElementsByName("hobby"); 
+for (let i=0; i<hobbies.length; i++) {
+	if (hobbies[i].checked) {
+		student.hobbies.push(hobbies[i].value);
+	}
+}	 
+student.resume = document.getElementById("resume").value;
+
+var xmlhttp = new XMLHttpRequest(); 
+xmlhttp.onreadystatechange=function()
+{
+if (xmlhttp.readyState==4 && xmlhttp.status==200)
+{
+	let errors = JSON.parse(xmlhttp.responseText);
+	if( (JSON.stringify(errors) == "{}"))
+	{
+		document.getElementById("studentForm").submit();
+	} else {
+	if(errors.nameError)  
+		document.getElementById("nameError").innerText = errors.nameError;
+	if(errors.ageError)  
+		document.getElementById("ageError").innerText = errors.ageError;
+	if(errors.hobbiesError)  
+		document.getElementById("hobbiesError").innerText = errors.hobbiesError;	
+	}	
+}
+}
+xmlhttp.open("POST","./StudentValidate",true);
+xmlhttp.send(JSON.stringify(student));
+}
+</script>
+</head>
+<body>
+<form action="../forward/StudentSave" id="studentForm" method="get">
+<table>
+    <tr><td><h4>新增学生</h4></td></tr>
+    <tr><td>姓名</td><td><input type="text" name="name" id="name"/></td>
+        <td><font style="color:red" id="nameError"></font></td></tr>        
+    <tr><td>年龄</td><td><input type="number" name="age" id="age"/></td>
+        <td><font style="color:red" id="ageError"></font></td></tr>
+    <tr><td>性别</td>
+    	<td>
+    	<input type="radio" name="gender" value="男">男 </input>
+    	<input type="radio" name="gender" value="女">女 </input>
+    	<input type="radio"name="gender" value="其他">其他</input>
+        </td>
+    </tr>
+    <tr><td>学院</td>
+        <td><select name="school" id="school">
+            <option value="计算机学院">计算机学院</option>
+            <option value="数学学院">数学学院</option>
+            <option value="机械学院" selected>机械学院</option>
+        </select></td>
+    </tr>
+    <tr><td>爱好</td><td>
+    	<input type="checkbox" name="hobby" checked="checked" value="篮球"> 篮球 </input> 
+        <input type="checkbox" name="hobby" value="羽毛球"> 羽毛球 </input>
+        <input type="checkbox" name="hobby" value="兵乓球"> 兵乓球 </input>
+        </td>
+        <td><font style="color:red" id="hobbiesError"></font></td>
+    </tr>
+
+    <tr><td>简历</td><td><textarea rows="5" cols="30" name="resume" id="resume"></textarea></td></tr>
+
+    <tr><td><input type="button" onclick="validate()" value="保存"/></td></tr>
+</table>
+</form>
+</body>
+</html>

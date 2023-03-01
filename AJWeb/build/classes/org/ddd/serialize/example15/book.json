@@ -1,0 +1,22 @@
+{
+	"title": "Java高级程序设计",
+	"pageCount":345,
+	"published":true,
+	"price":45.12,
+	"publisher":null,
+	"authors": ["徐传运","张杨","黎天送","刘洁","黎天送"],
+	"chapters": [
+		{
+			"no": 1,
+			"title": "关于代码"
+		},
+		{
+			"no": 2,
+			"title": "WEB编程"
+		},
+		{
+			"no": 3,
+			"title": "类型信息与反射"
+		}
+	]
+}
